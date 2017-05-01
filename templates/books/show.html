@@ -4,12 +4,16 @@
 		<img ng-src="{{bookShowCtrl.books.image}}">
 		<p ng-hide="editing">{{bookShowCtrl.books.author}}</p>
 		<p ng-hide="editing">{{bookShowCtrl.books.releaseDate}}</p>
-		<button type="button" class="btn btn-default" ng-hide="editing" ng-click="bookShowCtrl.editBook">Edit</button>
+		<button type="button" class="btn btn-default" ng-hide="editing" ng-click="editForm=!editForm">Edit</button>
         <button type="button" class="btn btn-default" ng-hide="editing" ng-click="bookShowCtrl.deleteBook(bookShowCtrl.books)">Delete</button>
-        <button type="button" class="btn btn-default" ng-show="editing" ng-click="bookShowCtrl.saveBook">Save</button>
-		<input ng-show="editing" ng-model="bookShowCtrl.books.title" type="text" class="form-control input-md">
-		<input ng-show="editing" ng-model="bookShowCtrl.books.author" type="text" class="form-control input-md">
-		<input ng-show="editing" ng-model="bookShowCtrl.books.releaseDate" type="text" class="form-control input-md">
+        <div ng-show="editForm">
+        <form ng-show="editForm" ng-submit="bookShowCtrl.updateBook(bookShowCtrl.books)">
+			<input ng-model="bookShowCtrl.books.title" type="text" class="form-control input-md">
+			<input ng-model="bookShowCtrl.books.author" type="text" class="form-control input-md">
+			<input ng-model="bookShowCtrl.books.releaseDate" type="text" class="form-control input-md">
+			<input type="submit" value="Update book" class="btn btn-default">
+		</form>
+		</div>
 	</div>
 </div>
                

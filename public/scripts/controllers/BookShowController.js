@@ -16,6 +16,24 @@ function bookShowController($http, $routeParams, $location) {
 		console.log("show book error", response);
 	});
 
+  vm.updateBook = function(bookUpdate) {
+    $http({
+      method: 'PUT',
+      url: 'https://super-crud.herokuapp.com/books/' + bookUpdate._id,
+      data: {
+        title : bookUpdate.title,
+        author : bookUpdate.author,
+        image : bookUpdate.image,
+        releaseDate : bookUpdate.releaseDate
+      }
+    }).then(function successCallback(json) {
+      console.log(json);
+      vm.books = json.data;
+      $location.path('/');
+    }, function errorCallback(response) {
+      console.log("error on deleting", response);
+    });
+  }
 
   vm.deleteBook = function(books) {
     $http({
